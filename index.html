@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>STREET CHILDREN DONATION PLATFORM</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" >
+    <style>
+    #loader{
+        width: 100%;
+        position:absolute;
+        background-color:blue;
+    }
+    </style>
+  <body>
+      <nav class="navbar navbar-expand-sm navbar-dark bg-success">
+          <a class="navbar-brand" href="#">STREET CHILDREN DONATION PLATFORM</a>
+          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                
+               
+              </ul>
+             
+          </div>
+      </nav>
+      <div id="loader" style="text-align: center; width:100%;height:100%;">
+          <img src="assets/images/loading.svg" alt="">
+          <div><b>Please Wait!! Loading from blockchain ...</b></div>
+      </div>
+      <div class="row" id="main" style="display:none">
+          <div class="col-md-6 mt-5 offset-md-1">
+            <div class="card">
+                <div class="card-header bg-success">
+                    Header
+                </div>
+                <div class="card-body">
+                   <div class="form-group">
+                     <label for="name">Part Name</label>
+                     <input type="text"
+                       class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="">
+                     <small id="helpId" class="form-text text-muted">Enter part name</small>
+                   </div>
+
+
+                   <div class="form-group">
+                    <label for="asset">Part Asset</label>
+                    <input type="text"
+                      class="form-control" name="asset" id="asset" aria-describedby="helpId" placeholder="">
+                    <small id="helpId" class="form-text text-muted">Enter part Asset</small>
+                  </div>
+                  <div class="form-group">
+                  <button type="submit" id="saveBtn" class="btn btn-primary float-right">Save</button>
+                  </div>
+                </div>
+                
+            </div>
+          </div>
+
+
+          <div class="col-md-4 mt-5">
+              <div class="card">
+                  <div class="card-header">
+                      List of Democratic parts [<span id="total"></span>]
+                  </div>
+                  <div class="card-body" id="part-list">
+                      
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+
+      <script id="template" type="x-tmpl-mustache">
+      {{#partArray}}
+         <div class="card mt-2 bg-info">
+            <div class="card-header">
+              {{name}} [{{owner}}]
+            </div>
+            <div class="card-body">
+               {{asset}}
+            </div>
+          </div>
+      {{/partArray}}
+      </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="assets/js/jquery-3.3.1.slim.min.js" ></script>
+    <script src="assets/js/popper.min.js" ></script>
+    <script src="assets/js/bootstrap.min.js" ></script>
+    <script src="assets/js/mustache.min.js" ></script>
+    <script src="https://unpkg.com/@aeternity/aepp-sdk/dist/aepp-sdk.browser-script.js"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>
