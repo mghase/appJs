@@ -164,9 +164,9 @@ $(document).on('click','#saveBtn', async function(){
  })
 
 await contractCall('registerChild',[name, age,gender,location,url], 0);
-//location.reload((true))
-  renderChild();
 
+  location.reload((true));
+  renderChild();
 $('#loader').hide();
 });
 
@@ -181,7 +181,7 @@ $('#child-list').on('click','.donateBtn', async function(e){
 await contractCall('donate',[childID], amount);
 
 
-location.reload((true))
+location.reload((true));
 renderChild();
 $('#loader').hide();
 });
