@@ -173,8 +173,9 @@ $('#loader').hide();
 
 $('#child-list').on('click','.donateBtn', async function(e){
   jQuery('#loader').show();
-  const amount = $(this).siblings('input').val();
+  
   const childID = e.target.id;
+  const amount = $(this).siblings('input[id='+childID+']').val();
    console.log(childID +"-"+amount)
 
 await contractCall('donate',[childID], amount);
