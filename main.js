@@ -142,9 +142,9 @@ $(document).on('click','#saveBtn', async function(){
     $('#loader').show();
     const name = $('#name').val();
     const age = $('#age').val();
-    const age = $('#gender').val();
-    const age = $('#location').val();
-    const age = $('#url').val();
+    const gender = $('#gender').val();
+    const location = $('#location').val();
+    const url = $('#url').val();
    
 
          childsArray.push({
