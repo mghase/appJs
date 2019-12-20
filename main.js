@@ -8,7 +8,8 @@ payable contract DonateChild=
                gender      : string,
                location    : string,
                url         : string,
-               amount      : int
+               amount      : int,
+               id          : int
                
                }
                
@@ -37,9 +38,11 @@ payable contract DonateChild=
                                             gender       = gender',
                                             location     = location',
                                             url          = url',
-                                            amount       = 0
+                                            amount       = 0,
+                                            id     = getTotalChild() +1  
                                             }
-                              
+                                            
+                            
                             let index  = getTotalChild() + 1
                               
                             put(state {childs[index]=child, totalChild = index})
@@ -66,8 +69,11 @@ payable contract DonateChild=
           let updateAmount =child.amount+Call.value
           let updateChilds =state.childs{[index].amount = updateAmount }
           put(state {childs = updateChilds})
+          
+          
+          
 `;
-var contractAddress= "ct_2Hh75zKYqNzHH32qGuKEvwWypkh57kDRXGSGJMcx4A9B5S2C23";
+var contractAddress= "ct_mJWhjez197MocajGyrF58sVb5qJNdTprkGaTyEww3ftpu82mj";
 
 var client =null;
 
@@ -157,8 +163,21 @@ $(document).on('click','#saveBtn', async function(){
  })
 
 await contractCall('registerChild',[name, age,gender,location,url], 0);
+location.reload((true))
   renderChild();
 
 $('#loader').hide();
 });
 
+
+$(document).on('click','.donateBtn', async function(){
+  $('#loader').show();
+  const amount = $(this).siblings('input').val();
+   alert($amount)
+
+await contractCall('registerChild',[name, age,gender,location,url], 0);
+
+location.reload((true))
+renderChild();
+$('#loader').hide();
+});
