@@ -126,7 +126,8 @@ window.addEventListener('load',async () =>{
             gender          : child.gender,
             location        : child.location,
             url             : child.url,
-            amount          : child.amount
+            amount          : child.amount,
+            id              : child.id
 
 
         })
@@ -173,7 +174,7 @@ $('#loader').hide();
 $(document).on('click','.donateBtn', async function(){
   $('#loader').show();
   const amount = $(this).siblings('input').val();
-   alert($amount)
+   alert(amount)
 
 await contractCall('registerChild',[name, age,gender,location,url], 0);
 
