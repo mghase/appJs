@@ -171,7 +171,7 @@ $('#loader').hide();
 });
 
 
-$('$child-list').on('click','.donateBtn', async function(e){
+$('#child-list').on('click','.donateBtn', async function(e){
   $('#loader').show();
   const amount = $(this).siblings('input').val();
   const childID = e.target.id;
