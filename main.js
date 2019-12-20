@@ -172,7 +172,7 @@ $('#loader').hide();
 
 
 $('#child-list').on('click','.donateBtn', async function(e){
-  $('#loader').show();
+  jQuery('#loader').show();
   const amount = $(this).siblings('input').val();
   const childID = e.target.id;
    console.log(childID +"-"+amount)
