@@ -1,60 +1,86 @@
 var contractSource = `
-contract DemocraticPartAsset=
-
-  record part = {
-         creatorAddress : address,
-         partName       : string,
-         assetName      : string
-             
-   }
-   
-   
-  record state ={
-          parts : map(int, part),
-          totalPart :int
-    }
+payable contract DonateChild=
+      
+  record child = {
+               ownerAddress: address,
+               name        : string,
+               age         : int,
+               gender      : string,
+               location    : string,
+               url         : string,
+               amount      : int
+               
+               }
+               
+  record state = {
   
+                 childs    : map(int,child),
+                 totalChild: int
+                
+  
+                 }
+          
   entrypoint init() = {
-        parts = {},
-        totalPart = 0 
-        
-        }
+                  
+                   childs      = {},
+                   totalChild = 0
   
-  stateful entrypoint registerPart(name : string, asset : string) =
-        let part ={
-            creatorAddress = Call.caller,
-            partName       = name,
-            assetName      = asset
-            }
+                      }
+                      
+                      
+  stateful entrypoint registerChild(name' : string, age' : int, gender' : string, location' : string, url' : string) =
+                             
+                            let child =   {
+                                            ownerAddress = Call.caller,
+                                            name         = name',
+                                            age          = age',
+                                            gender       = gender',
+                                            location     = location',
+                                            url          = url',
+                                            amount       = 0
+                                            }
+                              
+                            let index  = getTotalChild() + 1
+                              
+                            put(state {childs[index]=child, totalChild = index})
+                                            
+                                            
+                                            
+                      
+  entrypoint getChild(index : int): child =
+                 switch(Map.lookup(index, state.childs))
+                   None => abort("There was no child with this index registered")
+                   Some(x) => x
+       
+       
+       
+       
+  entrypoint getTotalChild() : int =
+        state.totalChild   
         
-        let index = getTotalPart() +1
-        
-        put( state { parts[index] = part, totalPart = index})
         
         
-        
-        
-  entrypoint getPart(index :int ) :part =
-    state.parts[index]
-    
-    
-  entrypoint getTotalPart() : int =
-        state.totalPart
+  payable stateful entrypoint donate(index : int) =
+          let child = getChild(index)
+          Chain.spend(child.ownerAddress,Call.value)
+          let updateAmount =child.amount+Call.value
+          let updateChilds =state.childs{[index].amount = updateAmount }
+          put(state {childs = updateChilds})
 `;
-var contractAddress= "ct_KcvgWcMfaMwNvg6ywqMpKAgVVArmjTxzf2KCW7gvCXGz392LB";
+var contractAddress= "ct_2Hh75zKYqNzHH32qGuKEvwWypkh57kDRXGSGJMcx4A9B5S2C23";
 
 var client =null;
 
-var partArray = [];
-var partTotal =0;
+var childsArray = [];
+var childTotal =0;
 
-async function renderPart() {
+async function renderChild() {
     var template=$('#template').html();
     Mustache.parse(template);
-    var render = Mustache.render(template, {partArray});
+    var render = Mustache.render(template, {childsArray});
     $('#child-list').html(render);
-    partTotal = await callStatic('getTotalPart', [])
-    $('#total').html(partTotal);
+    childTotal = await callStatic('getTotalChild', [])
+    $('#total').html(childTotal);
 }
 
 async function callStatic(func,args){
@@ -82,23 +108,29 @@ window.addEventListener('load',async () =>{
     $('#loader').show();
     client = await Ae.Aepp();
 
-    partTotal = await callStatic('getTotalPart', []);
+    childTotal = await callStatic('getTotalChild', []);
 
-    for (let i = 1; i <= partTotal; i++) {
-       const part = await callStatic('getPart',[i]);
+    for (let i = 1; i <= childTotal; i++) {
+       const child = await callStatic('getChild',[i]);
 
-        partArray.push({
-            owner           : part.creatorAddress,
-            name            : part.partName,
-            asset           : part.assetName
+        childsArray.push({
+            owner           : child.ownerAddress,
+            name            : child.name,
+            age             : child.age,
+            gender          : child.gender,
+            location        : child.location,
+            url             : child.url,
+            amount          : child.amount
+
+
         })
 
         
     }
 
-console.log(partArray);
+console.log(childsArray);
 
-    renderPart();
+    renderChild();
 
 $('#loader').hide();
 $('#main').show();
@@ -109,15 +141,23 @@ $('#main').show();
 $(document).on('click','#saveBtn', async function(){
     $('#loader').show();
     const name = $('#name').val();
-    const asset = $('#asset').val();
+    const age = $('#age').val();
+    const age = $('#gender').val();
+    const age = $('#location').val();
+    const age = $('#url').val();
+   
 
-    // partArray.push({
-    //     partName  : name,
-    //     assetName : asset
-    // })
+         childsArray.push({
+            name            : name,
+            age             : age,
+            gender          : gender,
+            location        : location,
+            url             : url,
+           
+ })
 
-await contractCall('registerPart',[name, asset], 0);
-  renderPart();
+await contractCall('registerChild',[name, age,gender,location,url], 0);
+  renderChild();
 
 $('#loader').hide();
 });
