@@ -171,14 +171,16 @@ $('#loader').hide();
 });
 
 
-$(document).on('click','.donateBtn', async function(){
+$(document).on('click','.donateBtn', async function(e){
   $('#loader').show();
   const amount = $(this).siblings('input').val();
-   alert(amount)
+  const childID = e.target.id;
+  // alert(amount)
 
-await contractCall('registerChild',[name, age,gender,location,url], 0);
+await contractCall('donate',[childID], amount);
 
-location.reload((true))
+
+//location.reload((true))
 renderChild();
 $('#loader').hide();
 });
