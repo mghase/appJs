@@ -52,7 +52,7 @@ async function renderPart() {
     var template=$('#template').html();
     Mustache.parse(template);
     var render = Mustache.render(template, {partArray});
-    $('#part-list').html(render);
+    $('#child-list').html(render);
     partTotal = await callStatic('getTotalPart', [])
     $('#total').html(partTotal);
 }
