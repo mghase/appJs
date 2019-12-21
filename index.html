@@ -138,12 +138,14 @@
              <div class="card-text">Total   : {{amount}} AE</p>
               <div class="card-text">
               {{#isOpened}}
-                Status : <h4>OPENDE</h4>
+                Status : <span class="badge badge-success">OPENED</span>
              {{/isOpened}}
              {{^isOpened}}
-                 Status : <h4 class="red">CLOSED</h4>
+                 Status : <span class="badge badge-danger">CLOSED</span>
              {{/isOpened}}
               </div>
+
+         {{#isOpened}}
               <div class="row">
                 <div class="col-sm-12">
                  <div class="form-group">
@@ -157,6 +159,9 @@
                 </div>
              </div>
          </div>
+     {{/isOpened}}
+
+
       </div>
       <div class="card-footer">
       <div class="row">
