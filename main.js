@@ -203,3 +203,32 @@ location.reload((true));
 renderChild();
 $('#loader').hide();
 });
+
+
+$('#child-list').on('click','.openBtn', async function(e){
+  jQuery('#loader').show();
+  
+  const childID = e.target.id;
+  
+
+await contractCall('openDonation',[childID], 0);
+
+
+location.reload((true));
+renderChild();
+$('#loader').hide();
+});
+
+$('#child-list').on('click','.closeBtn', async function(e){
+  jQuery('#loader').show();
+  
+  const childID = e.target.id;
+  
+
+await contractCall('closeDonation',[childID], 0);
+
+
+location.reload((true));
+renderChild();
+$('#loader').hide();
+});
