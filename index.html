@@ -138,10 +138,10 @@
              <div class="card-text">Total   : {{amount}} AE</p>
               <div class="card-text">
               {{#isOpened}}
-                Status : <h1>OPENDE</hi>
+                Status : <h4>OPENDE</h4>
              {{/isOpened}}
              {{^isOpened}}
-                 Status : <h1 class="red">CLOSED</hi>
+                 Status : <h4 class="red">CLOSED</h4>
              {{/isOpened}}
               </div>
               <div class="row">
@@ -153,21 +153,31 @@
                </div>
                <div class="col-sm-12">
                  <div class="form-group">
-                  <button type="button"  class="btn btn-primary float-right donateBtn" id={{id}}>Donate</button>
+                  <button type="button"  class="btn btn-primary float-right donateBtn m-2 p-2" id={{id}}>Donate</button>
                 </div>
              </div>
          </div>
       </div>
       <div class="card-footer">
       <div class="row">
-      <div class="col-sm-12 float-right">
+     
+      <div class="col-sm-12">
                  <div class="form-group">
-                  <button type="button"  class="btn btn-success float-right openBtn" id={{id}}>Open Donatiton</button>
+                  <button type="button"  class="btn btn-success col-sm-12 float-right openBtn m-2 p-2" id={{id}}>Open Donatiton</button>
                 </div>
+              
+       </div>
+
+         
+      <div class="col-sm-12">
+                
                 <div class="form-group">
-                  <button type="button"  class="btn btn-danger float-right closeBtn" id={{id}}>Close Donation</button>
+                  <button type="button"  class="btn btn-danger col-sm-12 float-right closeBtn m-2 p-2" id={{id}}>Close Donation</button>
                 </div>
-             </div>
+       </div>
+
+
+
       </div>
       </div>
    </div>
