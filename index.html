@@ -8,6 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="assets/css/scrollbar.css" >
     <style>
     #loader{
         width: 100%;
@@ -15,7 +16,9 @@
         {% comment %} background-color:blue; {% endcomment %}
     }
     </style>
-  <body>
+  <body >
+    <div id="scrollbar">
+    
       <nav class="navbar navbar-expand-sm navbar-dark bg-success">
           <a class="navbar-brand" href="#">STREET CHILDREN DONATION PLATFORM</a>
           <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
@@ -126,6 +129,7 @@
 
         </div>
   
+</div>
 </div>
       <script id="template" type="x-tmpl-mustache">
       {{#childsArray}}

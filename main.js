@@ -155,7 +155,7 @@ window.addEventListener('load',async () =>{
 
 console.log(childsArray);
 
-    renderChild();
+    renderChild()
 
 $('#loader').hide();
 $('#main').show();
