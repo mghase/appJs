@@ -190,7 +190,7 @@ $('#loader').hide();
 
 
 $('#child-list').on('click','.donateBtn', async function(e){
-  jQuery('#loader').show();
+  $('#loader').show();
   
   const childID = e.target.id;
   const amount = $('input[id='+childID+']').val();
@@ -206,7 +206,7 @@ $('#loader').hide();
 
 
 $('#child-list').on('click','.openBtn', async function(e){
-  jQuery('#loader').show();
+  $('#loader').show();
   
   const childID = e.target.id;
   
@@ -220,7 +220,7 @@ $('#loader').hide();
 });
 
 $('#child-list').on('click','.closeBtn', async function(e){
-  jQuery('#loader').show();
+  $('#loader').show();
   
   const childID = e.target.id;
   
