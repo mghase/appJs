@@ -66,7 +66,9 @@ payable contract DonateChild=
       
         
   payable stateful entrypoint donate(index : int) =
+          
           let child = getChild(index)
+          require(child.ownerAddress != Call.caller, "You cannot donate to your own Child")
           Chain.spend(child.ownerAddress,Call.value)
           let updateAmount =child.amount+Call.value
           let updateChilds =state.childs{[index].amount = updateAmount }
@@ -75,6 +77,8 @@ payable contract DonateChild=
           
           
   stateful entrypoint closeDonation(index : int) =
+         let child = getChild(index)
+         require(child.ownerAddress == Call.caller, "You cannot close a donation you dont own")
          let child          =  getChild(index)
          let updateIsOpened =  false
          let updateChilds    =  state.childs{[index].isOpened = updateIsOpened }
@@ -82,10 +86,13 @@ payable contract DonateChild=
          
     
   stateful entrypoint openDonation(index : int) =
+
          let child          =  getChild(index)
+         require(child.ownerAddress == Call.caller, "You cannot open a donation you dont own")
          let updateIsOpened =  true
          let updateChilds    =  state.childs{[index].isOpened = updateIsOpened }
          put(state {childs  =  updateChilds })
+         
          
          
          
@@ -155,7 +162,7 @@ window.addEventListener('load',async () =>{
 
 console.log(childsArray);
 
-    renderChild();
+    renderChild()
 
 $('#loader').hide();
 $('#main').show();
@@ -190,7 +197,7 @@ $('#loader').hide();
 
 
 $('#child-list').on('click','.donateBtn', async function(e){
-  jQuery('#loader').show();
+  $('#loader').show();
   
   const childID = e.target.id;
   const amount = $('input[id='+childID+']').val();
@@ -206,7 +213,7 @@ $('#loader').hide();
 
 
 $('#child-list').on('click','.openBtn', async function(e){
-  jQuery('#loader').show();
+  $('#loader').show();
   
   const childID = e.target.id;
   
@@ -220,7 +227,7 @@ $('#loader').hide();
 });
 
 $('#child-list').on('click','.closeBtn', async function(e){
-  jQuery('#loader').show();
+  $('#loader').show();
   
   const childID = e.target.id;
   

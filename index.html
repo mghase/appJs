@@ -8,20 +8,19 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" >
-    <style>
-    #loader{
-        width: 100%;
-        position:absolute;
-        {% comment %} background-color:blue; {% endcomment %}
-    }
-    </style>
-  <body>
+    <link rel="stylesheet" href="assets/css/scrollbar.css" >
+    <link rel="stylesheet" href="assets/css/loader.css" >    
+   
+    
+  <body >
+    <div id="scrollbar">
+    
       <nav class="navbar navbar-expand-sm navbar-dark bg-success">
           <a class="navbar-brand" href="#">STREET CHILDREN DONATION PLATFORM</a>
-          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+          <!-- <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
               aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
-          </button>
+          </button> -->
           <div class="collapse navbar-collapse" id="collapsibleNavId">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
              
@@ -126,6 +125,7 @@
 
         </div>
   
+</div>
 </div>
       <script id="template" type="x-tmpl-mustache">
       {{#childsArray}}
