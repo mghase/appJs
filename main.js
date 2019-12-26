@@ -32,23 +32,23 @@ payable contract DonateChild=
                       
   stateful entrypoint registerChild(name' : string, age' : int, gender' : string, location' : string, url' : string) =
                              
-                            let child =   {
-                                            ownerAddress = Call.caller,
-                                            name         = name',
-                                            age          = age',
-                                            gender       = gender',
-                                            location     = location',
-                                            url          = url',
-                                            amount       = 0,
-                                            id           = getTotalChild() +1,
-                                            isOpened     = true
-                                            }
-                                            
-                            
-                            let index  = getTotalChild() + 1
-                              
-                            put(state {childs[index]=child, totalChild = index})
-                                            
+      let child =   {
+                    ownerAddress = Call.caller,
+                    name         = name',
+                    age          = age',
+                    gender       = gender',
+                    location     = location',
+                    url          = url',
+                    amount       = 0,
+                    id           = getTotalChild() +1,
+                    isOpened     = true
+                    }
+
+
+      let index  = getTotalChild() + 1
+
+      put(state {childs[index]=child, totalChild = index})
+
                                             
                                             
                       
